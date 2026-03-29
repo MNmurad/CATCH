@@ -5,14 +5,10 @@ import os
 from itertools import groupby
 from operator import itemgetter
 
-import numpy as np
-
 
 def convert_vector_to_events(vector=None):
     if vector is None:
         vector = [0, 1, 1, 0, 0, 1, 0]
-    # Flatten to 1-D so that 2-D arrays and pandas Series/DataFrames work correctly
-    vector = np.asarray(vector).flatten()
     positive_indexes = [idx for idx, val in enumerate(vector) if val > 0]
     events = []
     for k, g in groupby(enumerate(positive_indexes), lambda ix: ix[0] - ix[1]):
